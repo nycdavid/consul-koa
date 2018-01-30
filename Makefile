@@ -1,7 +1,16 @@
-consul-server:
+consul-network:
+	docker network \
+	create \
+	--subnet=172.18.0.0/16 \
+	consul-koa
+	
+consul-server-cluster:
 	docker run \
-	-p 8600:8600 \
-	consul agent -dev
+	--network=consul-koa \
+	consul agent \
+	-server \
+	-data-dir=/tmp/consul \
+	-bootstrap-expect=3
 
 consul-agent-1:
 	docker run \
