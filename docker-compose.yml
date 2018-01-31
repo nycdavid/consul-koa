@@ -1,0 +1,30 @@
+version: "3"
+services:
+  consul-server-1:
+    image: consul:1.0.3
+    entrypoint:
+      - consul
+      - agent
+      - -server
+      - -data-dir=/tmp/consul
+      - -bootstrap-expect=3
+  consul-server-2:
+    image: consul:1.0.3
+    entrypoint:
+      - consul
+      - agent
+      - -server
+      - -data-dir=/tmp/consul
+      - -bootstrap-expect=3
+      - -retry-join
+      - "consul-agent-1"
+  consul-server-3:
+    image: consul:1.0.3
+    entrypoint:
+      - consul
+      - agent
+      - -server
+      - -data-dir=/tmp/consul
+      - -bootstrap-expect=3
+      - -retry-join
+      - "consul-agent-1"
