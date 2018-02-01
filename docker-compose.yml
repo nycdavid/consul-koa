@@ -6,9 +6,9 @@ services:
       - consul
       - agent
       - -server
-      - -ui
       - -data-dir=/tmp/consul
       - -bootstrap-expect=3
+
   consul-server-2:
     image: consul:1.0.3
     entrypoint:
@@ -29,6 +29,17 @@ services:
       - -bootstrap-expect=3
       - -retry-join
       - "consul-server-1"
+  consul-agent-1:
+    image: consul:1.0.3
+    entrypoint:
+      - consul
+      - agent
+      - -config-dir=/etc/consul.d
+      - -data-dir=/tmp/consul
+      - -retry-join
+      - "consul-server-1"
+    volumes:
+      - "./etc/consul.d:/etc/consul.d"
   consul-ui:
     image: consul:1.0.3
     ports:
