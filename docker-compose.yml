@@ -8,7 +8,6 @@ services:
       - -server
       - -data-dir=/tmp/consul
       - -bootstrap-expect=3
-
   consul-server-2:
     image: consul:1.0.3
     entrypoint:
