@@ -8,6 +8,8 @@ services:
       - -server
       - -data-dir=/tmp/consul
       - -bootstrap-expect=3
+    ports:
+      - "8600:8600"
   consul-server-2:
     image: consul:1.0.3
     entrypoint:
@@ -28,25 +30,23 @@ services:
       - -bootstrap-expect=3
       - -retry-join
       - "consul-server-1"
-  consul-agent-1:
+  mongo-agent-1:
     image: consul:1.0.3
     entrypoint:
       - consul
       - agent
       - -config-dir=/etc/consul.d
+      - -enable-script-checks
       - -data-dir=/tmp/consul
       - -retry-join
       - "consul-server-1"
     volumes:
       - "./etc/consul.d:/etc/consul.d"
+      - "./healthchecks:/tmp/healthchecks"
   consul-ui:
     image: consul:1.0.3
     ports:
-      - "8300:8300"
-      - "8301:8301"
-      - "8302:8302"
       - "8500:8500"
-      - "8600:8600"
     entrypoint:
       - consul
       - agent
