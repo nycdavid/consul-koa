@@ -1,0 +1,32 @@
+FROM consul:1.0.3
+
+USER root
+
+RUN apk update \
+  && apk add mongodb
+
+RUN mkdir -p /var/log/ \
+  && mkdir -p /data/db
+
+WORKDIR /
+
+ADD ./healthchecks healthchecks/
+
+RUN chmod +x /healthchecks/mongodb.sh
+
+ENTRYPOINT [ \
+  "consul", \
+  "agent", \
+  "-config-dir=/etc/consul.d", \
+  "-enable-script-checks", \
+  "-data-dir=/tmp/consul", \
+  "-retry-join", \
+  "consul-server-1" \
+  "&", \
+  "mongod", \
+  "--fork", \
+  "--logpath", \
+  "/var/log/mongodb.log", \
+  "--dbpath", \
+  "/data/db" \
+]

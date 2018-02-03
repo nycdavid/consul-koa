@@ -31,18 +31,11 @@ services:
       - -retry-join
       - "consul-server-1"
   mongo-agent-1:
-    image: consul:1.0.3
-    entrypoint:
-      - consul
-      - agent
-      - -config-dir=/etc/consul.d
-      - -enable-script-checks
-      - -data-dir=/tmp/consul
-      - -retry-join
-      - "consul-server-1"
+    build:
+      dockerfile: ./Dockerfile.mongo_agent
+      context: '.'
     volumes:
       - "./etc/consul.d:/etc/consul.d"
-      - "./healthchecks:/tmp/healthchecks"
   consul-ui:
     image: consul:1.0.3
     ports:
