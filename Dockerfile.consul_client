@@ -5,9 +5,6 @@ USER root
 RUN apk update \
   && apk add mongodb
 
-RUN mkdir -p /var/log/ \
-  && mkdir -p /data/db
-
 WORKDIR /
 
 ADD ./healthchecks healthchecks/
@@ -22,11 +19,4 @@ ENTRYPOINT [ \
   "-data-dir=/tmp/consul", \
   "-retry-join", \
   "consul-server-1" \
-  "&", \
-  "mongod", \
-  "--fork", \
-  "--logpath", \
-  "/var/log/mongodb.log", \
-  "--dbpath", \
-  "/data/db" \
 ]

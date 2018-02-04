@@ -1,9 +1,9 @@
-FROM consul:1.0.3
+FROM node:8.9.4-alpine
 
 ADD . ./
 
 RUN apk update && \
-  apk add nodejs yarn && \
+  apk add yarn && \
   yarn install
 
 ENTRYPOINT ["node", "app.js"]

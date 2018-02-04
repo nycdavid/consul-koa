@@ -4,7 +4,7 @@
     "tags": ["mongodb"],
     "port": 27017,
     "check": {
-      "script": "/tmp/healthchecks/mongodb.sh",
+      "script": "/healthchecks/mongodb.sh",
       "interval": "10s"
     }
   }
