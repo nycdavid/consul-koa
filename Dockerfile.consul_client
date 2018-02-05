@@ -3,20 +3,18 @@ FROM consul:1.0.3
 USER root
 
 RUN apk update \
-  && apk add mongodb
+  && apk add mongodb openrc
+
+RUN mkdir -p /data/db
 
 WORKDIR /
+
+COPY ./etc/init.d/consul etc/init.d/consul
 
 ADD ./healthchecks healthchecks/
 
 RUN chmod +x /healthchecks/mongodb.sh
+RUN chmod +x /etc/init.d/consul
+RUN rc-update add consul default
 
-ENTRYPOINT [ \
-  "consul", \
-  "agent", \
-  "-config-dir=/etc/consul.d", \
-  "-enable-script-checks", \
-  "-data-dir=/tmp/consul", \
-  "-retry-join", \
-  "consul-server-1" \
-]
+ENTRYPOINT rc-service consul status & mongod
