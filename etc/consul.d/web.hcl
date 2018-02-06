@@ -4,7 +4,7 @@
     "tags": ["koa"],
     "port": 80,
     "check": {
-      "http": "http://127.0.0.1",
+      "http": "http://koa-web",
       "interval": "10s"
     }
   }

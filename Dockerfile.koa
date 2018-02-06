@@ -1,17 +1,9 @@
-FROM consul:1.0.3
-
-USER root
+FROM node:8.9.4-alpine
 
 ADD . ./
 
 RUN apk update && \
-  apk add nodejs yarn openrc && \
+  apk add yarn && \
   yarn install
 
-COPY ./etc/consul.d/web.hcl /etc/consul.d/web.hcl
-COPY ./etc/init.d/consul /etc/init.d/consul
-
-RUN chmod +x /etc/init.d/consul
-RUN rc-update add consul default
-
-ENTRYPOINT rc-service consul status & node app.js
+ENTRYPOINT ["node", "app.js"]
