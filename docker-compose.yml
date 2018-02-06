@@ -28,14 +28,10 @@ services:
       - -bootstrap-expect=3
       - -retry-join
       - "consul-server-1"
-  consul-client-1:
+  mongo-client-1:
     build:
-      dockerfile: ./Dockerfile.consul_client
+      dockerfile: ./Dockerfile.mongo_client
       context: '.'
-    volumes:
-      - "./etc/consul.d:/etc/consul.d"
-  mongodb:
-    image: mongo:3.6.1
   koa-web:
     build:
       dockerfile: ./Dockerfile.koa

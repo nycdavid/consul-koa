@@ -1,7 +1,5 @@
 FROM consul:1.0.3
 
-USER root
-
 RUN apk update \
   && apk add mongodb openrc
 
@@ -10,6 +8,7 @@ RUN mkdir -p /data/db
 WORKDIR /
 
 COPY ./etc/init.d/consul etc/init.d/consul
+COPY ./etc/consul.d/mongodb.hcl /etc/consul.d/mongodb.hcl
 
 ADD ./healthchecks healthchecks/
 

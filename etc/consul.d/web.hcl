@@ -2,9 +2,9 @@
   "service": {
     "name": "web",
     "tags": ["koa"],
-    "port": 1111,
+    "port": 80,
     "check": {
-      "http": "http://koa-web:1111",
+      "http": "http://127.0.0.1",
       "interval": "10s"
     }
   }
