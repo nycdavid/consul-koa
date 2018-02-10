@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/Users/davidko/projects/consul-koa","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}},"virtualbox":{"/etc/consul.d":{"guestpath":"/etc/consul.d","hostpath":"/Users/davidko/projects/consul-koa/etc/consul.d","disabled":false,"__vagrantfile":true}}}
