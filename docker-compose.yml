@@ -1,33 +1,5 @@
 version: "3"
 services:
-  consul-server-1:
-    image: consul:1.0.3
-    entrypoint:
-      - consul
-      - agent
-      - -server
-      - -data-dir=/tmp/consul
-      - -bootstrap-expect=3
-  consul-server-2:
-    image: consul:1.0.3
-    entrypoint:
-      - consul
-      - agent
-      - -server
-      - -data-dir=/tmp/consul
-      - -bootstrap-expect=3
-      - -retry-join
-      - "consul-server-1"
-  consul-server-3:
-    image: consul:1.0.3
-    entrypoint:
-      - consul
-      - agent
-      - -server
-      - -data-dir=/tmp/consul
-      - -bootstrap-expect=3
-      - -retry-join
-      - "consul-server-1"
   mongo-node-1:
     image: mongo:3.7-jessie
   consul-agent-1:
@@ -38,15 +10,3 @@ services:
     build:
       dockerfile: ./Dockerfile.koa
       context: '.'
-  consul-ui:
-    image: consul:1.0.3
-    ports:
-      - "8500:8500"
-    entrypoint:
-      - consul
-      - agent
-      - -ui
-      - -client=0.0.0.0
-      - -data-dir=/tmp/consul
-      - -retry-join
-      - "consul-server-1"
