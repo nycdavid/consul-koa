@@ -15,8 +15,4 @@ Vagrant.configure("2") do |config|
       server.vm.hostname = "consul-server-#{n}"
     end
   end
-
-  # config.vm.provision "shell", path: "scripts/setup.sh"
-
-  # config.vm.synced_folder "./etc/consul.d", "/etc/consul.d"
 end
