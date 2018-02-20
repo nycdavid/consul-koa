@@ -12,7 +12,8 @@ Vagrant.configure("2") do |config|
       server.vm.synced_folder "./tmp.consul-server", "/tmp/consul/config"
       server.vm.synced_folder "./scripts", "/tmp/scripts/"
       server.vm.synced_folder "./etc/consul.d", "/etc/consul.d"
-      
+      server.vm.synced_folder "./system", "/tmp/system/"
+
       server.vm.network "private_network", type: "dhcp"
       server.vm.hostname = "consul-server-#{n}"
     end

@@ -3,7 +3,6 @@ Description=Consul server service
 
 [Service]
 Type=simple
-User=root
 ExecStart=/bin/bash /vagrant/scripts/start_consul.sh
 
 [Install]
