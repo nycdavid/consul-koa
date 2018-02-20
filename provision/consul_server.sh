@@ -12,3 +12,4 @@ mkdir -p /tmp/consul
 # systemd
 cp /tmp/system/consul_server.service /etc/systemd/system/consul_server.service
 chmod +x /vagrant/scripts/start_consul.sh
+sudo systemctl start consul_server
