@@ -14,8 +14,7 @@ Vagrant.configure("2") do |config|
       server.vm.synced_folder "./tmp.consul.server", "/tmp/consul.server"
 
       # Networking
-      server.vm.network "forwarded_port", guest: 8500, host: 8500 if n == 1
-      server.vm.network "private_network", type: "dhcp"
+      server.vm.network "private_network", ip: "192.168.99.100" if n == 1
       server.vm.hostname = "consul-server-#{n}"
     end
   end
