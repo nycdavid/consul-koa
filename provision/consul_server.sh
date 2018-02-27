@@ -12,4 +12,7 @@ mkdir -p /tmp/consul.server
 # systemd
 cp /tmp/consul.server/consul.service /etc/systemd/system/consul.service
 chmod +x /tmp/consul.server/scripts/start_consul.sh
+echo \
+  "consul agent -bind \$(ip addr show eth1 | grep "inet " | grep -Po 'inet \K[\d.]+') -config-file=/tmp/consul.server/${CONFIG_FILE}" \
+  > /tmp/consul.server/scripts/start_consul.sh
 sudo systemctl start consul
