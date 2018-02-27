@@ -33,4 +33,14 @@ Vagrant.configure("2") do |config|
       server.vm.hostname = "consul-server-#{n}"
     end
   end
+
+  config.vm.define "web-server" do |server|
+    # Provisioning
+    server.vm.provision "shell", {
+      path: "provision/web_server.sh"
+    }
+
+    # Synced Folders
+    server.vm.synced_folder "./tmp.web_server", "/tmp/app"
+  end
 end
