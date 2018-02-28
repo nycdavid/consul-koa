@@ -22,6 +22,7 @@ sudo apt-get update
 sudo apt-get install --no-install-recommends yarn
 
 # Copy service definitions
+mkdir -p /tmp/consul
 mkdir -p /etc/consul.d
 cp /tmp/web.server/web.service.hcl /etc/consul.d/web.service.hcl
 

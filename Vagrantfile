@@ -43,5 +43,9 @@ Vagrant.configure("2") do |config|
     # Synced Folders
     server.vm.synced_folder "./tmp.web.server", "/tmp/web.server"
     server.vm.synced_folder "./app", "/tmp/app"
+
+    # Networking
+    server.vm.network "private_network", type: "dhcp"
+    server.vm.hostname = "web-server-1"
   end
 end
