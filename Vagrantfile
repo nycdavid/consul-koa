@@ -41,6 +41,7 @@ Vagrant.configure("2") do |config|
     }
 
     # Synced Folders
-    server.vm.synced_folder "./tmp.web_server", "/tmp/app"
+    server.vm.synced_folder "./tmp.web.server", "/tmp/web.server"
+    server.vm.synced_folder "./app", "/tmp/app"
   end
 end

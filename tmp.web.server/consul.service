@@ -1,0 +1,8 @@
+[Unit]
+Description=Consul client service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /tmp/web.server/scripts/start_consul.sh
+
+[Install]
