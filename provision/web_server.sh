@@ -25,12 +25,16 @@ sudo apt-get install --no-install-recommends yarn
 mkdir -p /etc/consul.d
 cp /tmp/web.server/web.service.hcl /etc/consul.d/web.service.hcl
 
-# Consul Agent Client Service
+# Systemd services
 cp /tmp/web.server/consul.service /etc/systemd/system/consul.service
+cp /tmp/web.server/web.service /etc/systemd/system/web.service
 chmod +x /tmp/web.server/start_consul.sh
-sudo systemctl start consul
+chmod +x /tmp/web.server/start_web.sh
 
 # App setup
 cd /tmp/app
 yarn install
-npm start
+
+# Start services
+sudo systemctl start consul
+sudo systemctl start web

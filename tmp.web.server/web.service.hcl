@@ -1,9 +1,9 @@
 {
   "service": {
     "name": "web",
-    "port": 3000,
+    "port": 80,
     "check": {
-      "http": "http://localhost:3000"
+      "http": "http://localhost:80"
     }
   }
 }
